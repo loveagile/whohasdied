@@ -1,5 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import Dropdown from './Dropdown'
 
 const Table = (props) => {
   const { list } = props
@@ -8,8 +11,23 @@ const Table = (props) => {
   return (
     <div className='mt-[70px] min-w-[350px]'>
       <div className='w-full mx-auto bg-white rounded-sm'>
-        <header className='px-5 py-4 border-b border-gray-100'>
-          <h2 className='font-semibold text-gray-800'>Title</h2>
+        <header className='px-5 py-4 border-b border-gray-100 flex justify-between'>
+          <h2 className='font-semibold text-gray-800 text-2xl'>Title</h2>
+          <div className='flex'>
+            <button
+              type='button'
+              className='p-2 pl-4 pr-4 bg-[#009ef7] text-white rounded-lg mr-2 font-semibold'
+              onClick={() => {
+                navigate('/add')
+              }}
+            >
+              <FontAwesomeIcon className='mr-1' icon={['fas', 'fa-plus']} />
+              Add
+            </button>
+            <Dropdown title='Status' list={['All', 'Selected']}></Dropdown>
+            <Dropdown title='Age' list={['All', 'Selected']}></Dropdown>
+            <Dropdown title='Sort by' list={['Date', 'Selected']}></Dropdown>
+          </div>
         </header>
         <div className='p-3'>
           <div className='overflow-x-auto'>
