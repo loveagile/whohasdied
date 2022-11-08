@@ -1,10 +1,12 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Table = (props) => {
   const { list } = props
+  const navigate = useNavigate()
 
   return (
-    <div className='mt-[70px]'>
+    <div className='mt-[70px] min-w-[350px]'>
       <div className='w-full mx-auto bg-white rounded-sm'>
         <header className='px-5 py-4 border-b border-gray-100'>
           <h2 className='font-semibold text-gray-800'>Title</h2>
@@ -20,7 +22,7 @@ const Table = (props) => {
                   <th className='p-2 whitespace-nowrap'>
                     <div className='table-header'>Age</div>
                   </th>
-                  <th className='p-2 whitespace-nowrap'>
+                  <th className='p-2 whitespace-nowrap hidden sm:block'>
                     <div className='table-header'>Where</div>
                   </th>
                   <th className='p-2 whitespace-nowrap'>
@@ -33,8 +35,11 @@ const Table = (props) => {
                   <tr
                     className={index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}
                     key={index}
+                    onClick={() => {
+                      navigate(`/detail/${item.id}`)
+                    }}
                   >
-                    <td className='table-content'>
+                    <td className='table-content min-w-[140px]'>
                       <div className='flex items-center'>
                         <div className='flex-shrink-0 mr-2 sm:mr-3'>
                           <img
@@ -53,7 +58,7 @@ const Table = (props) => {
                     <td className='table-content'>
                       <div className='text-left'>{item.age}</div>
                     </td>
-                    <td className='table-content'>
+                    <td className='table-content hidden sm:table-cell'>
                       <div className='text-left'>{item.where}</div>
                     </td>
                     <td className='table-content'>
