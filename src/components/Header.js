@@ -6,11 +6,11 @@ const Header = () => {
 
   return (
     <div className='box-content bg-[#f8f8f8]'>
-      <div className='container flex justify-between h-28 w-full'>
-        <Link className='logo md:ml-[90px]'>
+      <div className='flex justify-between h-28 w-full'>
+        <Link className='logo ml-4 md:ml-[90px]' to='/'>
           <img src='/logo.png' className='h-[25px] w-[151px]' alt='logo'></img>
         </Link>
-        <button className='article-btn'>Articles</button>
+        <button className='article-btn mr-4 md:mr-[100px]'>Articles</button>
       </div>
     </div>
   )
