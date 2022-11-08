@@ -19,7 +19,6 @@ code {
 .logo {
   display: flex;
   align-items: center;
-  margin-left: 90px;
   font-size: 30px;
 }
 
@@ -38,8 +37,6 @@ code {
 .search-input {
   height: 80px;
   padding: 0px 25px;
-  margin-left: 100px;
-  min-width: 260px;
   width: 100%;
   border-radius: 15px 0px 0px 15px;
   box-shadow: 1px 2px 4px 0px #aaa
@@ -47,8 +44,7 @@ code {
 
 .search-btn {
   height: 80px;
-  margin-right: 100px;
-  min-width: 77px;
+  min-width: 70px;
   color: white;
   font-weight: 600;
   font-size: 15px;
