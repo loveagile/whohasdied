@@ -9,7 +9,7 @@ const Table = (props) => {
   const navigate = useNavigate()
 
   return (
-    <div className='mt-[70px] min-w-[350px]'>
+    <div className='mt-[50px] min-w-[350px]'>
       <div className='w-full mx-auto bg-white rounded-sm'>
         <header className='px-5 py-4 border-b border-gray-100 flex justify-between'>
           <h2 className='font-semibold text-gray-800 text-2xl'>Title</h2>
