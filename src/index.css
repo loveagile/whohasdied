@@ -69,3 +69,10 @@ code {
   white-space: nowrap;
   padding: 15px;
 }
+
+.datepicker-header {
+  height: initial;  
+  padding-right: initial;
+  padding-left: initial;
+  background-color: initial;
+}
