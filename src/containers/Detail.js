@@ -25,7 +25,7 @@ const Detail = () => {
   }, [])
 
   return (
-    <div className='p-16'>
+    <div className='p-16 mt-10'>
       <div className='block w-full md:flex md:mr-8'>
         <img
           src={detail?.photo}
