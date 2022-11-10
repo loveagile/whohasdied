@@ -26,7 +26,7 @@ const Add = () => {
     description: '',
     career: '',
     death: '',
-    causeOfDeath: '',
+    reason: '',
     facebook: '',
     twitter: '',
     instagram: '',
@@ -100,10 +100,10 @@ const Add = () => {
         </div>
         <div className='grid md:grid-cols-2 md:gap-6'>
           <TextInput
-            name='causeOfDeath'
+            name='reason'
             label='Cause of death'
             type='text'
-            value={formik.values?.causeOfDeath}
+            value={formik.values?.reason}
             setValue={formik.setFieldValue}
           />
         </div>
@@ -112,7 +112,6 @@ const Add = () => {
             name='description'
             type='tel'
             label='Description'
-            // classes='min-h-[100px]'
             value={formik.values?.description}
             setValue={formik.setFieldValue}
           />
@@ -122,7 +121,6 @@ const Add = () => {
             name='career'
             type='tel'
             label='Career'
-            // classes='min-h-[100px]'
             value={formik.values?.career}
             setValue={formik.setFieldValue}
           />
@@ -132,7 +130,6 @@ const Add = () => {
             name='death'
             type='tel'
             label='Death'
-            // classes='min-h-[100px]'
             value={formik.values?.death}
             setValue={formik.setFieldValue}
           />
