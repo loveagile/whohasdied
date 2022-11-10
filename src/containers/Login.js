@@ -1,17 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import { login } from '../api/apiCaller'
+
 const Login = () => {
+  const [password, setPassword] = useState()
   const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    login(password).then((data) => {
+      localStorage.setItem('admin_token', data.data.token)
+      navigate('/admin/list')
+    })
   }
 
   return (
     <div className='shadow-lg w-full flex justify-center mt-10 md:max-w-lg p-10'>
-      <div className='space-y-2'>
+      <div className='space-y-2 w-full'>
         <h3 className='text-3xl font-semibold flex justify-center mb-6'>
           Login
         </h3>
@@ -27,6 +34,10 @@ const Login = () => {
               type='password'
               className='form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
               id='password'
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value)
+              }}
               aria-describedby='password'
               placeholder='Enter password'
             ></input>

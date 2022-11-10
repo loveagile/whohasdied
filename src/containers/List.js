@@ -7,7 +7,6 @@ import { getDeadPeople } from '../api/apiCaller'
 const List = () => {
   const [people, setPeople] = useState()
   useEffect(() => {
-    console.log('effect')
     getDeadPeople().then((list) => {
       setPeople(list.data)
     })

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import moment from 'moment'
 
 import Dropdown from './Dropdown'
+import { SERVER_URL } from '../config'
 
 const getDuration = (date) => {
   const m1 = moment(date)
@@ -13,6 +14,7 @@ const getDuration = (date) => {
   const days = duration.days(),
     months = duration.months(),
     years = duration.years()
+
   if (years) {
     return `${years} years ago`
   } else if (months) {
@@ -27,6 +29,7 @@ const getDuration = (date) => {
 const Table = (props) => {
   const { list } = props
   const navigate = useNavigate()
+  const admin_token = localStorage.getItem('admin_token')
 
   return (
     <div className='mt-[50px] min-w-[350px]'>
@@ -36,9 +39,12 @@ const Table = (props) => {
           <div className='flex'>
             <button
               type='button'
-              className='p-2 pl-4 pr-4 bg-[#009ef7] text-white rounded-lg mr-2 font-semibold'
+              className={
+                'p-2 pl-4 pr-4 bg-[#009ef7] text-white rounded-lg mr-2 font-semibold ' +
+                (admin_token ? '' : 'hidden')
+              }
               onClick={() => {
-                navigate('/add')
+                navigate('/admin/add')
               }}
             >
               <FontAwesomeIcon className='mr-1' icon={['fas', 'fa-plus']} />
@@ -83,7 +89,7 @@ const Table = (props) => {
                           <div className='flex-shrink-0 mr-2 sm:mr-3'>
                             <img
                               className='rounded-lg '
-                              src={item?.photo}
+                              src={SERVER_URL + item?.photo}
                               width='65'
                               height='65'
                               alt='photo'

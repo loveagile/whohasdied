@@ -10,6 +10,9 @@ const AdminRouter = () => {
   return (
     <Routes>
       <Route path='/admin/add' element={<Add />}></Route>
+      <Route path='/admin/list' element={<List />}></Route>
+      <Route path='/admin/:urlname' element={<Detail />}></Route>
+      <Route path='/admin' element={<List />}></Route>
     </Routes>
   )
 }
@@ -19,7 +22,7 @@ const UserRouter = () => {
     <Routes>
       <Route path='/list' element={<List />}></Route>
       <Route path='/admin' element={<Login />}></Route>
-      <Route path='/:fullname' element={<Detail />}></Route>
+      <Route path='/:urlname' element={<Detail />}></Route>
       <Route path='/' element={<List />}></Route>
     </Routes>
   )
