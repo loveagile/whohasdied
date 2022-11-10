@@ -44,7 +44,7 @@ const Table = (props) => {
                 (admin_token ? '' : 'hidden')
               }
               onClick={() => {
-                navigate('/admin/add')
+                navigate('/add')
               }}
             >
               <FontAwesomeIcon className='mr-1' icon={['fas', 'fa-plus']} />

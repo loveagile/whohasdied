@@ -40,7 +40,7 @@ const Detail = () => {
             <div className='flex'>
               <p className='mr-2 flex items-top text-xl'>Socials:</p>
               <div className='flex items-top mt-1'>
-                <a href={detail.facebook} target='blank'>
+                <a href={detail?.facebook} target='blank'>
                   <FontAwesomeIcon
                     className={
                       'mr-3 text-[#009ef7] text-2xl cursor-pointer ' +
@@ -49,7 +49,7 @@ const Detail = () => {
                     icon={['fab', 'facebook-f']}
                   />
                 </a>
-                <a href={detail.twitter} target='blank'>
+                <a href={detail?.twitter} target='blank'>
                   <FontAwesomeIcon
                     className={
                       'mr-3 text-[#009ef7] text-2xl cursor-pointer ' +
@@ -58,7 +58,7 @@ const Detail = () => {
                     icon={['fab', 'twitter']}
                   />
                 </a>
-                <a href={detail.instagram} target='blank'>
+                <a href={detail?.instagram} target='blank'>
                   <FontAwesomeIcon
                     className={
                       'mr-3 text-[#009ef7] text-2xl cursor-pointer ' +
@@ -67,7 +67,7 @@ const Detail = () => {
                     icon={['fab', 'instagram']}
                   />
                 </a>
-                <a href={detail.youtube} target='blank'>
+                <a href={detail?.youtube} target='blank'>
                   <FontAwesomeIcon
                     className={
                       'mr-3 text-[#009ef7] text-2xl cursor-pointer ' +

@@ -9,7 +9,7 @@ const DatePicker = (props) => {
     const datepicker = new Datepicker(datepickerRef.current, {})
 
     const handleDateChange = (e) => {
-      setValue(name, e.target.value)
+      setValue(e.target.value)
     }
     datepickerRef.current.addEventListener('changeDate', handleDateChange)
 
@@ -19,7 +19,7 @@ const DatePicker = (props) => {
 
   const handleChange = (e) => {
     e.stopPropagation()
-    setValue(name, e.target.value)
+    setValue(e.target.value)
   }
 
   return (

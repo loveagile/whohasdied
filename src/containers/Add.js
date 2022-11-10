@@ -1,52 +1,80 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useFormik } from 'formik'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import * as yup from 'yup'
 
 import DatePicker from '../components/DatePicker'
 import TextInput from '../components/TextInput'
 import TextareaField from '../components/TextareaField'
-
-const validationSchema = yup.object({
-  fullname: yup.string().required('Fullname is required'),
-  age: yup.number().required('Age is required'),
-  when: yup.date().required('Date is required'),
-  where: yup.string().required('DeadPlace is required'),
-})
+import { addDeadPerson } from '../api/apiCaller'
+import { Toast } from 'flowbite-react'
 
 const Add = () => {
-  const initial = {
-    fullname: '',
-    age: '',
-    birthday: '',
-    birthplace: '',
-    deadDay: new Date(),
-    deadPlace: '',
-    description: '',
-    career: '',
-    death: '',
-    reason: '',
-    facebook: '',
-    twitter: '',
-    instagram: '',
-    youtube: '',
+  const [photo, setPhoto] = useState('')
+  const [fullname, setFullname] = useState('')
+  const [age, setAge] = useState()
+  const [birthday, setBirthday] = useState()
+  const [birthplace, setBirthplace] = useState('')
+  const [deadDay, setDeadDay] = useState()
+  const [deadPlace, setDeadPlace] = useState('')
+  const [description, setDescription] = useState('')
+  const [career, setCareer] = useState('')
+  const [death, setDeath] = useState('')
+  const [reason, setReason] = useState('')
+  const [facebook, setFacebook] = useState('')
+  const [twitter, setTwitter] = useState('')
+  const [instagram, setInstagram] = useState('')
+  const [youtube, setYoutube] = useState('')
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!localStorage.getItem('admin_token')) {
+      navigate('/')
+    }
+  }, [])
+
+  const onFileChange = (event) => {
+    setPhoto(event.target?.files[0])
   }
-  const formik = useFormik({
-    initialValues: initial,
-    validationSchema: validationSchema,
-    onSubmit: (values) => {},
-  })
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const formData = new FormData()
+    formData.append('photo', photo)
+    formData.append('fullname', fullname)
+    formData.append('age', age)
+    formData.append('birthday', birthday)
+    formData.append('birthplace', birthplace)
+    formData.append('deadDay', deadDay)
+    formData.append('deadPlace', deadPlace)
+    formData.append('description', description)
+    formData.append('career', career)
+    formData.append('death', death)
+    formData.append('reason', reason)
+    formData.append('facebook', facebook)
+    formData.append('twitter', twitter)
+    formData.append('instagram', instagram)
+    formData.append('youtube', youtube)
+
+    addDeadPerson(formData)
+      .then((data) => {
+        navigate('/list')
+      })
+      .catch((error) => {
+        Toast.error(error?.error)
+      })
+  }
 
   return (
     <div className='mt-10'>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className='grid md:grid-cols-2 md:gap-6'>
           <div className='form-group mb-5'>
             <input
               className='form-control block w-full px-3 py-1.5 text-base font-normal h-full text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white  :border-blue-600 focus:outline-none'
               type='file'
               id='formFile'
+              onChange={onFileChange}
             />
           </div>
         </div>
@@ -55,15 +83,15 @@ const Add = () => {
             name='fullname'
             label='Full name'
             type='text'
-            value={formik.values?.fullname}
-            setValue={formik.setFieldValue}
+            value={fullname}
+            setValue={setFullname}
           />
           <TextInput
             name='age'
             label='Age'
             type='number'
-            value={formik.values?.age}
-            setValue={formik.setFieldValue}
+            value={age}
+            setValue={setAge}
           />
         </div>
         <div className='grid md:grid-cols-2 md:gap-6'>
@@ -71,15 +99,15 @@ const Add = () => {
             name='birthday'
             label='Birthday'
             type='text'
-            value={formik.values?.birthday}
-            setValue={formik.setFieldValue}
+            value={birthday}
+            setValue={setBirthday}
           />
           <TextInput
             name='birthplace'
             label='Birthplace'
             type='text'
-            value={formik.values?.birthplace}
-            setValue={formik.setFieldValue}
+            value={birthplace}
+            setValue={setBirthplace}
           />
         </div>
         <div className='grid md:grid-cols-2 md:gap-6'>
@@ -87,15 +115,15 @@ const Add = () => {
             name='deadDay'
             label='Dead day'
             type='text'
-            value={formik.values?.deadDay}
-            setValue={formik.setFieldValue}
+            value={deadDay}
+            setValue={setDeadDay}
           />
           <TextInput
             name='deadPlace'
             label='Dead place'
             type='text'
-            value={formik.values?.deadPlace}
-            setValue={formik.setFieldValue}
+            value={deadPlace}
+            setValue={setDeadPlace}
           />
         </div>
         <div className='grid md:grid-cols-2 md:gap-6'>
@@ -103,8 +131,8 @@ const Add = () => {
             name='reason'
             label='Cause of death'
             type='text'
-            value={formik.values?.reason}
-            setValue={formik.setFieldValue}
+            value={reason}
+            setValue={setReason}
           />
         </div>
         <div className='grid grid-cols'>
@@ -112,8 +140,8 @@ const Add = () => {
             name='description'
             type='tel'
             label='Description'
-            value={formik.values?.description}
-            setValue={formik.setFieldValue}
+            value={description}
+            setValue={setDescription}
           />
         </div>
         <div className='grid grid-cols'>
@@ -121,8 +149,8 @@ const Add = () => {
             name='career'
             type='tel'
             label='Career'
-            value={formik.values?.career}
-            setValue={formik.setFieldValue}
+            value={career}
+            setValue={setCareer}
           />
         </div>
         <div className='grid grid-cols'>
@@ -130,8 +158,8 @@ const Add = () => {
             name='death'
             type='tel'
             label='Death'
-            value={formik.values?.death}
-            setValue={formik.setFieldValue}
+            value={death}
+            setValue={setDeath}
           />
         </div>
         <div className='grid md:grid-cols-2 md:gap-6'>
@@ -139,15 +167,15 @@ const Add = () => {
             name='facebook'
             label='Facebook'
             type='text'
-            value={formik.values?.facebook}
-            setValue={formik.setFieldValue}
+            value={facebook}
+            setValue={setFacebook}
           />
           <TextInput
             name='twitter'
             label='Twitter'
             type='text'
-            value={formik.values?.twitter}
-            setValue={formik.setFieldValue}
+            value={twitter}
+            setValue={setTwitter}
           />
         </div>
         <div className='grid md:grid-cols-2 md:gap-6'>
@@ -155,15 +183,15 @@ const Add = () => {
             name='instagram'
             label='Instagram'
             type='text'
-            value={formik.values?.instagram}
-            setValue={formik.setFieldValue}
+            value={instagram}
+            setValue={setInstagram}
           />
           <TextInput
             name='youtube'
             label='Youtube'
             type='text'
-            value={formik.values?.youtube}
-            setValue={formik.setFieldValue}
+            value={youtube}
+            setValue={setYoutube}
           />
         </div>
         <div className='flex justify-between'>

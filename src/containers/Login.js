@@ -12,7 +12,7 @@ const Login = () => {
     e.preventDefault()
     login(password).then((data) => {
       localStorage.setItem('admin_token', data.data.token)
-      navigate('/admin/list')
+      navigate('/list')
     })
   }
 

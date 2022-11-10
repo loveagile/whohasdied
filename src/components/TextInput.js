@@ -3,7 +3,7 @@ import React from 'react'
 const TextInput = (props) => {
   const { name, type, label, value, setValue, classes } = props
   const handleChange = (e) => {
-    setValue(name, e.target.value)
+    setValue(e.target.value)
   }
 
   return (
