@@ -1,34 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import moment from 'moment'
+
+import { getDeadPerson } from '../api/apiCaller'
+import { SERVER_URL } from '../config'
 
 const Detail = () => {
-  const init = {
-    id: 1,
-    photo: '/images/300-12.jpg',
-    firstname: 'Jack',
-    lastname: 'Ben',
-    age: 30,
-    birthday: '3 December 1990',
-    birthplace: 'Wisla, Poland',
-    deadDay: '3 December 1997',
-    deadPlace: 'Wisla, Poland',
-    description: `Lorem ipsum dolor sit amst, consetetur sadipscing eltr, sed diam nonumy eirmod tempor individen ut labore et fdolor mangean caccusam et jus to duo dolores et ea rebum. Stet clita kasd gubergren, no sea trakimata sanctus est lorem ipsum dolor sit amet elitr, sed diam nonumy eir mod tempor inviduunt ut labore et dolore manga aliquaym erat, sed diam volupatua. At vero esos et ac gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum doloro sit amet, conseteutr sadipscing elitr, sed diam nonumy eirmod tempor invideunt labore et dolor accsuam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor soelt, sed diam noenumy eirm tempor invidunt ut loatbore et dolore mangan alguqysn,teidnat woise diam.`,
-    career: `Lorem ipsum dolor sit amst, consetetur sadipscing eltr, sed diam nonumy eirmod tempor individen ut labore et fdolor mangean caccusam et jus to duo dolores et ea rebum. Stet clita kasd gubergren, no sea trakimata sanctus est lorem ipsum dolor sit amet elitr, sed diam nonumy eir mod tempor inviduunt ut labore et dolore manga aliquaym erat, sed diam volupatua. At vero esos et ac gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum doloro sit amet, conseteutr sadipscing elitr, sed diam nonumy eirmod tempor invideunt labore et dolor accsuam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor soelt, sed diam noenumy eirm tempor invidunt ut loatbore et dolore mangan alguqysn,teidnat woise diam.`,
-    death: `Lorem ipsum dolor sit amst, consetetur sadipscing eltr, sed diam nonumy eirmod tempor individen ut labore et fdolor mangean caccusam et jus to duo dolores et ea rebum. Stet clita kasd gubergren, no sea trakimata sanctus est lorem ipsum dolor sit amet elitr, sed diam nonumy eir mod tempor inviduunt ut labore et dolore manga aliquaym erat, sed diam volupatua. At vero esos et ac gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum doloro sit amet, conseteutr sadipscing elitr, sed diam nonumy eirmod tempor invideunt labore et dolor accsuam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor soelt, sed diam noenumy eirm tempor invidunt ut loatbore et dolore mangan alguqysn,teidnat woise diam.`,
-    causeOfDeath: 'Lorem ipsum dolor',
-  }
+  const urlname = useParams().urlname || ''
   const [detail, setDetail] = useState({})
-  const id = useParams().id || ''
+
   useEffect(() => {
-    setDetail(init)
+    getDeadPerson(urlname).then((data) => {
+      setDetail(data.data)
+    })
   }, [])
 
   return (
-    <div className='p-16'>
+    <div className='p-16 mt-10'>
       <div className='block w-full md:flex md:mr-8'>
         <img
-          src={detail?.photo}
+          src={SERVER_URL + detail?.photo}
           width={230}
           height={230}
           className='rounded-lg'
@@ -37,7 +29,7 @@ const Detail = () => {
         <div className='md:ml-8 w-full'>
           <div className='pt-10 flex justify-between'>
             <div className='flex flex-col'>
-              <p className='text-2xl font-semibold'>{`${detail?.firstname} ${detail?.lastname}`}</p>
+              <p className='text-2xl font-semibold'>{detail?.fullname}</p>
               <div className='pt-4 flex justify-between'>
                 <div className='flex'>
                   <p className='font-semibold text-lg mr-1'>age:</p>
@@ -48,39 +40,63 @@ const Detail = () => {
             <div className='flex'>
               <p className='mr-2 flex items-top text-xl'>Socials:</p>
               <div className='flex items-top mt-1'>
-                <FontAwesomeIcon
-                  className='mr-3 text-[#009ef7] text-2xl cursor-pointer'
-                  icon={['fab', 'facebook-f']}
-                />
-                <FontAwesomeIcon
-                  className='mr-3 text-[#009ef7] text-2xl cursor-pointer'
-                  icon={['fab', 'twitter']}
-                />
-                <FontAwesomeIcon
-                  className='mr-3 text-[#009ef7] text-2xl cursor-pointer'
-                  icon={['fab', 'instagram']}
-                />
-                <FontAwesomeIcon
-                  className='mr-3 text-[#009ef7] text-2xl cursor-pointer'
-                  icon={['fab', 'youtube']}
-                />
+                <a href={detail?.facebook} target='blank'>
+                  <FontAwesomeIcon
+                    className={
+                      'mr-3 text-[#009ef7] text-2xl cursor-pointer ' +
+                      (detail?.facebook ? '' : 'hidden')
+                    }
+                    icon={['fab', 'facebook-f']}
+                  />
+                </a>
+                <a href={detail?.twitter} target='blank'>
+                  <FontAwesomeIcon
+                    className={
+                      'mr-3 text-[#009ef7] text-2xl cursor-pointer ' +
+                      (detail?.twitter ? '' : 'hidden')
+                    }
+                    icon={['fab', 'twitter']}
+                  />
+                </a>
+                <a href={detail?.instagram} target='blank'>
+                  <FontAwesomeIcon
+                    className={
+                      'mr-3 text-[#009ef7] text-2xl cursor-pointer ' +
+                      (detail?.instagram ? '' : 'hidden')
+                    }
+                    icon={['fab', 'instagram']}
+                  />
+                </a>
+                <a href={detail?.youtube} target='blank'>
+                  <FontAwesomeIcon
+                    className={
+                      'mr-3 text-[#009ef7] text-2xl cursor-pointer ' +
+                      (detail?.youtube ? '' : 'hidden')
+                    }
+                    icon={['fab', 'youtube']}
+                  />
+                </a>
               </div>
             </div>
           </div>
           <div className='mt-6 flex'>
             <div className=''>
               <p className='font-semibold text-md'>Born:</p>
-              <p className=''>{detail?.birthday}</p>
+              <p className=''>
+                {moment(detail?.birthday).format('d MMMM YYYY.')}
+              </p>
               <p className=''>{detail?.birthplace}</p>
             </div>
             <div className='ml-10'>
               <p className='font-semibold text-md'>Died:</p>
-              <p className=''>{detail?.deadDay}</p>
+              <p className=''>
+                {moment(detail?.deadDay).format('d MMMM YYYY.')}
+              </p>
               <p className=''>{detail?.deadPlace}</p>
             </div>
             <div className='ml-10'>
               <p className='font-semibold text-md'>Cause of death:</p>
-              <p className='max-w-[200px]'>{detail?.causeOfDeath}</p>
+              <p className='max-w-[200px]'>{detail?.reason}</p>
             </div>
           </div>
         </div>
