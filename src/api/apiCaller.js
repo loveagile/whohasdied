@@ -6,8 +6,10 @@ export const login = (password) => {
   return axios.post(`${BASE_URL}/admin/login`, { password })
 }
 
-export const getDeadPeople = () => {
-  return axios.get(`${BASE_URL}/deadpeople`)
+export const getDeadPeople = (search, page, size) => {
+  return axios.get(
+    `${BASE_URL}/deadpeople?search=${search}&page=${page}&size=${size}`
+  )
 }
 
 export const getDeadPerson = (urlname) => {

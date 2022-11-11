@@ -22,7 +22,6 @@ const Detail = () => {
         <img
           src={SERVER_URL + detail?.photo}
           width={230}
-          height={230}
           className='rounded-lg'
           alt='photo'
         />

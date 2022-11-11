@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import moment from 'moment'
 
-import Dropdown from './Dropdown'
 import { SERVER_URL } from '../config'
 
 const getDuration = (date) => {
@@ -50,9 +49,6 @@ const Table = (props) => {
               <FontAwesomeIcon className='mr-1' icon={['fas', 'fa-plus']} />
               Add
             </button>
-            <Dropdown title='Status' list={['All', 'Selected']}></Dropdown>
-            <Dropdown title='Age' list={['All', 'Selected']}></Dropdown>
-            <Dropdown title='Sort by' list={['Date', 'Selected']}></Dropdown>
           </div>
         </header>
         <div className='p-3'>
@@ -76,6 +72,7 @@ const Table = (props) => {
               </thead>
               <tbody className='text-sm divide-y divide-gray-100'>
                 {list &&
+                  list.length &&
                   list.map((item, index) => (
                     <tr
                       className={index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}
