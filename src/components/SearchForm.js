@@ -1,12 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const SearchForm = (props) => {
-  const handleSubmit = (value) => {}
+  const { search, setSearch } = props
+  const [key, setKey] = useState(search)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setSearch(key)
+  }
+
   return (
     <form className='flex justify-center w-full' onSubmit={handleSubmit}>
       <input
         className='search-input focus:outline-none'
         placeholder='Search People'
+        value={key}
+        onChange={(e) => {
+          setKey(e.target.value)
+        }}
       ></input>
       <button
         type='submit'
