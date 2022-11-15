@@ -16,6 +16,10 @@ code {
     monospace;
 }
 
+span {
+  overflow-wrap: anywhere;
+}
+
 .logo {
   display: flex;
   align-items: center;

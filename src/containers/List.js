@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import * as query from 'query-string'
 
 import SearchForm from '../components/SearchForm'
@@ -12,16 +12,12 @@ const List = () => {
   const [page, setPage] = useState(1)
   const [search, setSearch] = useState('')
   const [total, setTotal] = useState(1)
-  const [size, setSize] = useState(5)
+  const size = 10
   const navigate = useNavigate()
   let param = query.parse(window.location.search)
 
   useEffect(() => {
-    getDeadPeople(
-      param?.search || search,
-      param?.page || page,
-      param?.size || size
-    )
+    getDeadPeople(param?.search || search, param?.page || page)
       .then((list) => {
         setPeople(list?.data?.people)
         const to = parseInt((list?.data?.total - 1) / size + 1)
@@ -34,20 +30,14 @@ const List = () => {
   }, [window.location.search])
 
   useEffect(() => {
-    navigate(`?search=${search}&page=${page}&size=${size}`)
-  }, [search, page, size])
+    navigate(`?search=${search}&page=${page}`)
+  }, [search, page])
 
   return (
     <div className='mt-[50px] w-full max-w-[1000px] ml-auto mr-auto'>
       <SearchForm search={search} setSearch={setSearch} />
       <Table list={people} />
-      <Pagination
-        page={page}
-        setPage={setPage}
-        total={total}
-        size={size}
-        setSize={setSize}
-      />
+      <Pagination page={page} setPage={setPage} total={total} />
     </div>
   )
 }
