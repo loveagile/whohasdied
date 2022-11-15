@@ -21,9 +21,11 @@ const getDuration = (date) => {
     return `${years} years ago`
   } else if (months) {
     return `${months} months ago`
-  } else if (days) {
+  } else if (days > 1) {
     return `${days} days ago`
-  } else {
+  } else if (days === 1) {
+    return 'yesterday'
+  } else if (days < 1) {
     return 'today'
   }
 }
