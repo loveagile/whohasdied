@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import moment from 'moment'
 
-import { SERVER_URL } from '../config'
-
 const getDuration = (date) => {
   const m1 = moment(date)
   const m2 = moment(new Date())
@@ -86,7 +84,7 @@ const Table = (props) => {
                           <div className='flex-shrink-0 mr-2 sm:mr-3'>
                             <img
                               className='rounded-lg '
-                              src={SERVER_URL + item?.photo}
+                              src={item?.photo}
                               width='65'
                               height='65'
                               alt='photo'
