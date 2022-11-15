@@ -95,7 +95,9 @@ const Table = (props) => {
                     <div className='table-header'>When</div>
                   </th>
                   <th
-                    className={'p-2 whitespace-nowrap ' + isAdmin() && 'hidden'}
+                    className={
+                      'p-2 whitespace-nowrap ' + (isAdmin() ? '' : 'hidden')
+                    }
                   >
                     <div className='table-header'></div>
                   </th>
@@ -139,7 +141,11 @@ const Table = (props) => {
                           {getDuration(item?.deadDay)}
                         </div>
                       </td>
-                      <td className={'table-content ' + isAdmin() && 'hidden'}>
+                      <td
+                        className={
+                          'table-content ' + (isAdmin() ? '' : 'hidden')
+                        }
+                      >
                         <div
                           className='hover:cursor-pointer'
                           onClick={(e) => {
