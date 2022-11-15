@@ -25,7 +25,7 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
           <div className='form-group mb-5'>
             <label
-              for='name'
+              htmlFor='name'
               className='form-label inline-block mb-2 text-gray-700'
             >
               Password
