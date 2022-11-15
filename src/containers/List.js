@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import * as query from 'query-string'
 
 import SearchForm from '../components/SearchForm'
@@ -29,7 +29,7 @@ const List = () => {
         if (page > to) setPage(1)
       })
       .catch((error) => {
-        navigate('/list')
+        navigate('/')
       })
   }, [window.location.search])
 

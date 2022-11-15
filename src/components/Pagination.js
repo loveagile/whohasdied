@@ -55,31 +55,28 @@ const Pagination = (props) => {
           <p className='text-sm ml-3 font-medium leading-none'>Previous</p>
         </div>
         <div className='sm:flex hidden'>
-          {Array(total)
-            .fill('')
-            .map((s, index) => {
-              if (index + 1 === page) {
-                console.log('selected index', index, page)
-                return (
-                  <p
-                    className='text-sm font-medium leading-none cursor-pointer text-indigo-700 border-t border-indigo-400 pt-3 mr-4 px-2'
-                    key={index}
-                  >
-                    {index + 1}
-                  </p>
-                )
-              } else {
-                return (
-                  <p
-                    className='text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2'
-                    onClick={() => handlePageNumber(index + 1)}
-                    key={index}
-                  >
-                    {index + 1}
-                  </p>
-                )
-              }
-            })}
+          {Array.from(Array(total), (_, index) => {
+            if (index + 1 === page) {
+              return (
+                <p
+                  className='text-sm font-medium leading-none cursor-pointer text-indigo-700 border-t border-indigo-400 pt-3 mr-4 px-2'
+                  key={index}
+                >
+                  {index + 1}
+                </p>
+              )
+            } else {
+              return (
+                <p
+                  className='text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2'
+                  onClick={() => handlePageNumber(index + 1)}
+                  key={index}
+                >
+                  {index + 1}
+                </p>
+              )
+            }
+          })}
         </div>
         <div
           className='flex items-center pt-3 text-gray-600 hover:text-indigo-700 cursor-pointer'

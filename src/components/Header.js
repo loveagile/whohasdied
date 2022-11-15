@@ -1,9 +1,7 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
-  const navigate = useNavigate()
-
   return (
     <div className='box-content bg-[#f8f8f8]'>
       <div className='flex justify-between h-28 w-full'>

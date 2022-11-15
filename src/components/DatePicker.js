@@ -14,7 +14,10 @@ const DatePicker = (props) => {
     datepickerRef.current.addEventListener('changeDate', handleDateChange)
 
     return () =>
-      datepickerRef.current.removeEventListener('changeDate', handleDateChange)
+      datepickerRef?.current?.removeEventListener(
+        'changeDate',
+        handleDateChange
+      )
   }, [])
 
   const handleChange = (e) => {

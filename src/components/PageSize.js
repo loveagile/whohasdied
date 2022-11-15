@@ -4,11 +4,11 @@ const PageSize = (props) => {
   const { list, size, setSize } = props
 
   return (
-    <div class='flex justify-center items-center mr-3'>
+    <div className='flex justify-center items-center mr-3'>
       <p className='mt-3'>Page Size:</p>
-      <div class='dropdown relative mt-3'>
+      <div className='dropdown relative mt-3'>
         <button
-          class='
+          className='
             dropdown-toggle
             px-3
             py-2.5
@@ -38,7 +38,7 @@ const PageSize = (props) => {
             focusable='false'
             data-prefix='fas'
             data-icon='caret-down'
-            class='w-2 ml-2'
+            className='w-2 ml-2'
             role='img'
             xmlns='http://www.w3.org/2000/svg'
             viewBox='0 0 320 512'
@@ -50,7 +50,7 @@ const PageSize = (props) => {
           </svg>
         </button>
         <ul
-          class='
+          className='
             dropdown-menu
             min-w-max
             absolute
@@ -72,10 +72,10 @@ const PageSize = (props) => {
           '
           aria-labelledby='dropdownMenuButton1'
         >
-          {list?.map((item) => (
-            <li>
+          {list?.map((item, index) => (
+            <li key={index}>
               <p
-                class='
+                className='
                   dropdown-item
                   text-sm
                   py-2
