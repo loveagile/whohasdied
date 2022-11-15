@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import moment from 'moment'
 
 import { getDeadPerson } from '../api/apiCaller'
-import { SERVER_URL } from '../config'
 
 const Detail = () => {
   const urlname = useParams().urlname || ''
@@ -20,7 +19,7 @@ const Detail = () => {
     <div className='p-16 mt-10'>
       <div className='block w-full md:flex md:mr-8'>
         <img
-          src={SERVER_URL + detail?.photo}
+          src={detail?.photo}
           width={230}
           className='rounded-lg'
           alt='photo'
