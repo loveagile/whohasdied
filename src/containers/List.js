@@ -18,7 +18,7 @@ const List = () => {
   let param = query.parse(window.location.search)
 
   useEffect(() => {
-    getDeadPeople(param?.search || search, param?.page || page)
+    getDeadPeople(param?.search || '', param?.page || 1)
       .then((list) => {
         setPeople(list?.data?.people)
         const to = parseInt((list?.data?.total - 1) / size + 1)

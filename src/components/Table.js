@@ -7,6 +7,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css'
 
 import TrashIcon from './TrashIcon'
 import { deleteDeadPerson } from '../api/apiCaller'
+import { isAdmin } from '../config/utils'
 
 const getDuration = (date) => {
   const m1 = moment(date)
@@ -93,7 +94,9 @@ const Table = (props) => {
                   <th className='p-2 whitespace-nowrap'>
                     <div className='table-header'>When</div>
                   </th>
-                  <th className='p-2 whitespace-nowrap'>
+                  <th
+                    className={'p-2 whitespace-nowrap ' + isAdmin() && 'hidden'}
+                  >
                     <div className='table-header'></div>
                   </th>
                 </tr>
@@ -136,7 +139,7 @@ const Table = (props) => {
                           {getDuration(item?.deadDay)}
                         </div>
                       </td>
-                      <td className='table-content'>
+                      <td className={'table-content ' + isAdmin() && 'hidden'}>
                         <div
                           className='hover:cursor-pointer'
                           onClick={(e) => {
