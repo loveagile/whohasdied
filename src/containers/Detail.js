@@ -16,7 +16,7 @@ const Detail = () => {
   }, [])
 
   return (
-    <div className='p-16 mt-10'>
+    <div className='p-2 md:p-16 mt-10'>
       <div className='block w-full md:flex md:mr-8'>
         <img
           src={detail?.photo}
@@ -25,7 +25,7 @@ const Detail = () => {
           alt='photo'
         />
         <div className='md:ml-8 w-full'>
-          <div className='pt-10 flex justify-between'>
+          <div className='pt-10 min-[450px]:flex min-[450px]:justify-between'>
             <div className='flex flex-col'>
               <p className='text-2xl font-semibold'>{detail?.fullname}</p>
               <div className='pt-4 flex justify-between'>
@@ -77,31 +77,33 @@ const Detail = () => {
               </div>
             </div>
           </div>
-          <div className='mt-6 flex'>
-            <div className=''>
+          <div className='mt-6 min-[450px]:flex'>
+            <div className='mb-3'>
               <p className='font-semibold text-md'>Born:</p>
-              <p className=''>
+              <p className='min-[450px]:max-w-[200px]'>
                 {moment(detail?.birthday).format('d MMMM YYYY.')}
               </p>
               <p className=''>{detail?.birthplace}</p>
             </div>
-            <div className='ml-10'>
+            <div className='min-[450px]:ml-10 mb-3'>
               <p className='font-semibold text-md'>Died:</p>
-              <p className=''>
+              <p className='min-[450px]:max-w-[200px]'>
                 {moment(detail?.deadDay).format('d MMMM YYYY.')}
               </p>
               <p className=''>{detail?.deadPlace}</p>
             </div>
-            <div className='ml-10'>
+            <div className='min-[450px]:ml-10 mb-3'>
               <p className='font-semibold text-md'>Cause of death:</p>
-              <p className='max-w-[200px]'>{detail?.reason}</p>
+              <p className='min-[450px]:max-w-[200px]'>{detail?.reason}</p>
             </div>
           </div>
         </div>
       </div>
       <div className='mt-10'>
-        <p className='font-semibold text-xl'>Description</p>
-        <span className='text-sm'>{detail?.description}</span>
+        <p className='font-semibold text-xl'>About</p>
+        <span className='text-sm overflow-wrap-anywhere'>
+          {detail?.description}
+        </span>
       </div>
       <div className='mt-10'>
         <p className='font-semibold text-xl'>Career</p>
