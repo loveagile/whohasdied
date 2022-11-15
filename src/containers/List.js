@@ -12,6 +12,7 @@ const List = () => {
   const [page, setPage] = useState(1)
   const [search, setSearch] = useState('')
   const [total, setTotal] = useState(1)
+  const [refresh, setRefresh] = useState(false)
   const size = 10
   const navigate = useNavigate()
   let param = query.parse(window.location.search)
@@ -27,7 +28,7 @@ const List = () => {
       .catch((error) => {
         navigate('/')
       })
-  }, [window.location.search])
+  }, [window.location.search, refresh])
 
   useEffect(() => {
     navigate(`?search=${search}&page=${page}`)
@@ -36,7 +37,7 @@ const List = () => {
   return (
     <div className='mt-[50px] w-full max-w-[1000px] ml-auto mr-auto'>
       <SearchForm search={search} setSearch={setSearch} />
-      <Table list={people} />
+      <Table list={people} refresh={refresh} setRefresh={setRefresh} />
       <Pagination page={page} setPage={setPage} total={total} />
     </div>
   )

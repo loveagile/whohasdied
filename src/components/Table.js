@@ -1,7 +1,12 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { confirmAlert } from 'react-confirm-alert'
 import moment from 'moment'
+import 'react-confirm-alert/src/react-confirm-alert.css'
+
+import TrashIcon from './TrashIcon'
+import { deleteDeadPerson } from '../api/apiCaller'
 
 const getDuration = (date) => {
   const m1 = moment(date)
@@ -24,15 +29,35 @@ const getDuration = (date) => {
 }
 
 const Table = (props) => {
-  const { list } = props
+  const { list, refresh, setRefresh } = props
   const navigate = useNavigate()
   const admin_token = localStorage.getItem('admin_token')
+
+  const handleDelete = (urlname) => {
+    confirmAlert({
+      title: 'Delete',
+      message: 'Are you sure to delete this person?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => {
+            deleteDeadPerson(urlname).then(() => {
+              setRefresh(!refresh)
+            })
+          },
+        },
+        {
+          label: 'No',
+          onClick: () => {},
+        },
+      ],
+    })
+  }
 
   return (
     <div className='mt-[50px] min-w-[350px]'>
       <div className='w-full mx-auto bg-white rounded-sm'>
         <header className='px-5 py-4 border-b border-gray-100 flex justify-between'>
-          <h2 className='font-semibold text-gray-800 text-2xl'>Title</h2>
           <div className='flex'>
             <button
               type='button'
@@ -66,6 +91,9 @@ const Table = (props) => {
                   <th className='p-2 whitespace-nowrap'>
                     <div className='table-header'>When</div>
                   </th>
+                  <th className='p-2 whitespace-nowrap'>
+                    <div className='table-header'></div>
+                  </th>
                 </tr>
               </thead>
               <tbody className='text-sm divide-y divide-gray-100'>
@@ -76,7 +104,7 @@ const Table = (props) => {
                       className={index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}
                       key={index}
                       onClick={() => {
-                        navigate(`/${item.urlname}`)
+                        navigate(`/${item?.urlname}`)
                       }}
                     >
                       <td className='table-content min-w-[140px]'>
@@ -104,6 +132,17 @@ const Table = (props) => {
                       <td className='table-content'>
                         <div className='text-left'>
                           {getDuration(item?.deadDay)}
+                        </div>
+                      </td>
+                      <td className='table-content'>
+                        <div
+                          className='hover:cursor-pointer'
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            handleDelete(item?.urlname)
+                          }}
+                        >
+                          <TrashIcon></TrashIcon>
                         </div>
                       </td>
                     </tr>
