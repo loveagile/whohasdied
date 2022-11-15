@@ -26,3 +26,13 @@ export const addDeadPerson = (formData) => {
   }
   return axios.post(`${BASE_URL}/deadpeople`, formData, config)
 }
+
+export const deleteDeadPerson = (urlname) => {
+  const token = localStorage.getItem('admin_token')
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+  return axios.delete(`${BASE_URL}/deadpeople/${urlname}`, config)
+}

@@ -80,3 +80,11 @@ span {
   padding-left: initial;
   background-color: initial;
 }
+
+.react-confirm-alert-body h1 {
+  font-size: 25px;
+}
+
+.react-confirm-alert-button-group {
+  justify-content: flex-end;
+}
