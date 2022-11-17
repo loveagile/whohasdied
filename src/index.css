@@ -81,6 +81,10 @@ span {
   background-color: initial;
 }
 
+.datepicker-footer {
+  display: none;
+}
+
 .react-confirm-alert-body h1 {
   font-size: 25px;
 }

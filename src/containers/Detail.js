@@ -13,7 +13,7 @@ const Detail = () => {
     getDeadPerson(urlname).then((data) => {
       setDetail(data.data)
     })
-  }, [])
+  }, [urlname])
 
   return (
     <div className='p-2 md:p-16 mt-10'>
@@ -98,12 +98,6 @@ const Detail = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div className='mt-10'>
-        <p className='font-semibold text-xl'>About</p>
-        <span className='text-sm overflow-wrap-anywhere'>
-          {detail?.description}
-        </span>
       </div>
       <div className='mt-10'>
         <p className='font-semibold text-xl'>Career</p>
