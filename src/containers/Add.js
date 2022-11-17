@@ -16,7 +16,6 @@ const Add = () => {
   const [birthplace, setBirthplace] = useState('')
   const [deadDay, setDeadDay] = useState()
   const [deadPlace, setDeadPlace] = useState('')
-  const [description, setDescription] = useState('')
   const [career, setCareer] = useState('')
   const [death, setDeath] = useState('')
   const [reason, setReason] = useState('')
@@ -47,7 +46,6 @@ const Add = () => {
     formData.append('birthplace', birthplace)
     formData.append('deadDay', deadDay)
     formData.append('deadPlace', deadPlace)
-    formData.append('description', description)
     formData.append('career', career)
     formData.append('death', death)
     formData.append('reason', reason)
@@ -133,15 +131,6 @@ const Add = () => {
             type='text'
             value={reason}
             setValue={setReason}
-          />
-        </div>
-        <div className='grid grid-cols'>
-          <TextareaField
-            name='description'
-            type='tel'
-            label='Description'
-            value={description}
-            setValue={setDescription}
           />
         </div>
         <div className='grid grid-cols'>
