@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 import DatePicker from '../components/DatePicker'
 import TextInput from '../components/TextInput'
 import TextareaField from '../components/TextareaField'
 import { addDeadPerson } from '../api/apiCaller'
-import { Toast } from 'flowbite-react'
 
 const Add = () => {
   const [photo, setPhoto] = useState('')
@@ -57,9 +58,10 @@ const Add = () => {
     addDeadPerson(formData)
       .then((data) => {
         navigate('/list')
+        toast('The person was added successfully!', 'success')
       })
       .catch((error) => {
-        Toast.error(error?.error)
+        toast.error(error?.message)
       })
   }
 
