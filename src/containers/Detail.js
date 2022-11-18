@@ -81,14 +81,14 @@ const Detail = () => {
             <div className='mb-3'>
               <p className='font-semibold text-md'>Born:</p>
               <p className='min-[450px]:max-w-[200px]'>
-                {moment(detail?.birthday).format('d MMMM YYYY.')}
+                {moment(detail?.birthday).format('DD MMMM YYYY.')}
               </p>
               <p className=''>{detail?.birthplace}</p>
             </div>
             <div className='min-[450px]:ml-10 mb-3'>
               <p className='font-semibold text-md'>Died:</p>
               <p className='min-[450px]:max-w-[200px]'>
-                {moment(detail?.deadDay).format('d MMMM YYYY.')}
+                {moment(detail?.deadDay).format('DD MMMM YYYY.')}
               </p>
               <p className=''>{detail?.deadPlace}</p>
             </div>

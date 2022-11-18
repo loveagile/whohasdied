@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { toast } from 'react-toastify'
 
 import { login } from '../api/apiCaller'
 
@@ -8,12 +9,21 @@ const Login = () => {
   const [password, setPassword] = useState()
   const navigate = useNavigate()
 
+  useEffect(() => {
+    localStorage.removeItem('admin_token')
+  }, [])
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    login(password).then((data) => {
-      localStorage.setItem('admin_token', data.data.token)
-      navigate('/list')
-    })
+    login(password)
+      .then((data) => {
+        localStorage.setItem('admin_token', data.data.token)
+        navigate('/list')
+        toast.success('Logged in successfully!')
+      })
+      .catch((error) => {
+        toast.error(error?.message)
+      })
   }
 
   return (

@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 import 'flowbite/dist/flowbite.js'
 import 'flowbite/dist/datepicker.js'
 import 'tw-elements/dist/js/index.min.js'
@@ -13,6 +14,7 @@ const App = () => {
       <Layout>
         <Router />
       </Layout>
+      <ToastContainer />
     </BrowserRouter>
   )
 }
