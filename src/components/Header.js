@@ -11,10 +11,11 @@ const Header = () => {
           <img src='/logo.png' className='h-[25px] w-[151px]' alt='logo'></img>
         </Link>
         <div className='flex'>
-          <button className='article-btn mr-5 md:mr-[100px]'>Articles</button>
+          <button className='article-btn mr-4 md:mr-[100px]'>Articles</button>
           <Link
             className={
-              `mr-4 text-lg flex items-center ` + (isAdmin() ? '' : 'hidden')
+              `mr-4 md:mr-[90px] text-lg flex items-center ` +
+              (isAdmin() ? '' : 'hidden')
             }
             to='/admin'
           >
