@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { confirmAlert } from 'react-confirm-alert'
 import moment from 'moment'
+import { toast } from 'react-toastify'
 import 'react-confirm-alert/src/react-confirm-alert.css'
 
 import TrashIcon from './TrashIcon'
@@ -44,9 +45,14 @@ const Table = (props) => {
         {
           label: 'Yes',
           onClick: () => {
-            deleteDeadPerson(urlname).then(() => {
-              setRefresh(!refresh)
-            })
+            deleteDeadPerson(urlname)
+              .then(() => {
+                setRefresh(!refresh)
+                toast.success('Deleted successfully!')
+              })
+              .catch(() => {
+                toast.error('Deleting is failed')
+              })
           },
         },
         {
