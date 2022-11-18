@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { confirmAlert } from 'react-confirm-alert'
 import moment from 'moment'
@@ -121,46 +121,75 @@ const Table = (props) => {
                       }}
                     >
                       <td className='table-content min-w-[140px]'>
-                        <div className='flex items-center'>
-                          <div className='flex-shrink-0 mr-2 sm:mr-3'>
-                            <img
-                              className='rounded-lg '
-                              src={item?.photo}
-                              width='65'
-                              height='65'
-                              alt='photo'
-                            />
+                        <Link
+                          className='h-[80px] w-full flex'
+                          to={`/${item?.urlname}`}
+                        >
+                          <div className='flex items-center'>
+                            <div className='flex-shrink-0 mr-2 sm:mr-3'>
+                              <img
+                                className='rounded-lg '
+                                src={item?.photo}
+                                width='65'
+                                height='65'
+                                alt='photo'
+                              />
+                            </div>
+                            <div className='font-medium text-gray-800'>
+                              {item?.fullname}
+                            </div>
                           </div>
-                          <div className='font-medium text-gray-800'>
-                            {item?.fullname}
-                          </div>
-                        </div>
+                        </Link>
                       </td>
                       <td className='table-content'>
-                        <div className='text-left'>{item?.age}</div>
+                        <Link
+                          className='h-[80px] w-full flex'
+                          to={`/${item?.urlname}`}
+                        >
+                          <div className='text-left flex items-center'>
+                            {item?.age}
+                          </div>
+                        </Link>
                       </td>
                       <td className='table-content hidden sm:table-cell'>
-                        <div className='text-left'>{item?.deadPlace}</div>
+                        <Link
+                          className='h-[80px] w-full flex'
+                          to={`/${item?.urlname}`}
+                        >
+                          <div className='text-left flex items-center'>
+                            {item?.deadPlace}
+                          </div>
+                        </Link>
                       </td>
                       <td className='table-content'>
-                        <div className='text-left'>
-                          {getDuration(item?.deadDay)}
-                        </div>
+                        <Link
+                          className='h-[80px] w-full flex'
+                          to={`/${item?.urlname}`}
+                        >
+                          <div className='text-left flex items-center'>
+                            {getDuration(item?.deadDay)}
+                          </div>
+                        </Link>
                       </td>
                       <td
                         className={
                           'table-content ' + (isAdmin() ? '' : 'hidden')
                         }
                       >
-                        <div
-                          className='hover:cursor-pointer'
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            handleDelete(item?.urlname)
-                          }}
+                        <Link
+                          className='h-[80px] w-full flex'
+                          to={`/${item?.urlname}`}
                         >
-                          <TrashIcon></TrashIcon>
-                        </div>
+                          <div
+                            className='hover:cursor-pointer flex items-center'
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              handleDelete(item?.urlname)
+                            }}
+                          >
+                            <TrashIcon></TrashIcon>
+                          </div>
+                        </Link>
                       </td>
                     </tr>
                   ))}
