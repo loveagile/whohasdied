@@ -5,7 +5,7 @@ Admin can manage the died people list.
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory, you can run test:
 
 ### `npm start`
 
