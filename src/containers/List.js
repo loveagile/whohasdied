@@ -13,9 +13,9 @@ const List = () => {
   const [search, setSearch] = useState('')
   const [total, setTotal] = useState(1)
   const [refresh, setRefresh] = useState(false)
-  const size = 10
   let param = query.parse(window.location.search)
   const navigate = useNavigate()
+  const size = 10
 
   useEffect(() => {
     getDeadPeople(param?.search || '', param?.page || 1)
