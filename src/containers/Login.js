@@ -10,7 +10,9 @@ const Login = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
+    if (localStorage.getItem('admin_token')) {
     localStorage.removeItem('admin_token')
+    }
   }, [])
 
   const handleSubmit = (e) => {
